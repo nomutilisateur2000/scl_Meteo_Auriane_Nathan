@@ -5,9 +5,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import ig.hearc.ig.scl.business.Meteo;
 import ig.hearc.ig.scl.business.StationMeteo;
 import ig.hearc.ig.scl.persistence.DBConnection;
-import ig.hearc.ig.scl.service.MeteoDeserializer;
-import ig.hearc.ig.scl.service.StationMeteoDeserializer;
-import ig.hearc.ig.scl.service.ApiCallService;
+import ig.hearc.ig.scl.service.*;
 
 import java.net.http.HttpResponse;
 import java.sql.Connection;
@@ -20,6 +18,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         double lat, lon;
+        OwmPersistenceManagement openWeatherMapManager = new OwmPersistence();
 
         // Saisie latitude
         do {
@@ -62,9 +61,15 @@ public class Main {
             System.out.println("\n=== Objet StationMeteo ===");
             System.out.println(station);
             System.out.println("Pays associé : " + station.getPays());
+            if (openWeatherMapManager.insert(meteo, station.getPays(), station) != 0){
+                System.out.println("ça fonctionne");
+            }else{
+                System.out.println("ça fonctionne pas");
+            }
+
 
         } catch (NullPointerException e){
-            System.out.println("Clé d'API fausse");
+            System.out.println("La clé d'API n'est pas correcte");
         } catch (Exception e) {
             e.printStackTrace();
         }
