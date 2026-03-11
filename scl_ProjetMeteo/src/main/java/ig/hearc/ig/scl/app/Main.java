@@ -1,67 +1,88 @@
-package ig.hearc.ig.scl.test;
+package ig.hearc.ig.scl.app;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import ig.hearc.ig.scl.business.Meteo;
 import ig.hearc.ig.scl.business.StationMeteo;
+import ig.hearc.ig.scl.persistence.DBConnection;
 import ig.hearc.ig.scl.service.MeteoDeserializer;
 import ig.hearc.ig.scl.service.StationMeteoDeserializer;
 import ig.hearc.ig.scl.service.ApiCallService;
 
 import java.net.http.HttpResponse;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-        double lat, lon;
+            try {
+                Connection connection = DBConnection.getConnection();
+                if(connection != null){
+                    System.out.println("youpi");
 
-        // Saisie latitude
-        do {
-            System.out.print("Entrer une latitude : ");
-            lat = sc.nextDouble();
-        } while (Double.isNaN(lat));
+                    Scanner sc = new Scanner(System.in);
+                    double lat, lon;
 
-        // Saisie longitude
-        do {
-            System.out.print("Entrer une longitude : ");
-            lon = sc.nextDouble();
-        } while (Double.isNaN(lon));
+                    // Saisie latitude
+                    do {
+                        System.out.print("Entrer une latitude : ");
+                        lat = sc.nextDouble();
+                    } while (Double.isNaN(lat));
 
-        sc.close();
+                    // Saisie longitude
+                    do {
+                        System.out.print("Entrer une longitude : ");
+                        lon = sc.nextDouble();
+                    } while (Double.isNaN(lon));
 
-        try {
-            // Appel de l'API
-            HttpResponse<String> response = ApiCallService.callAPI(lat, lon);
+                    sc.close();
 
-            // Mapper pour Meteo
-            ObjectMapper mapperMeteo = new ObjectMapper();
-            SimpleModule moduleMeteo = new SimpleModule();
-            moduleMeteo.addDeserializer(Meteo.class, new MeteoDeserializer());
-            mapperMeteo.registerModule(moduleMeteo);
+                    try {
+                        // Appel de l'API
+                        HttpResponse<String> response = ApiCallService.callAPI(lat, lon);
 
-            // Mapper pour StationMeteo
-            ObjectMapper mapperStation = new ObjectMapper();
-            SimpleModule moduleStation = new SimpleModule();
-            moduleStation.addDeserializer(StationMeteo.class, new StationMeteoDeserializer());
-            mapperStation.registerModule(moduleStation);
+                        // Mapper pour Meteo
+                        ObjectMapper mapperMeteo = new ObjectMapper();
+                        SimpleModule moduleMeteo = new SimpleModule();
+                        moduleMeteo.addDeserializer(Meteo.class, new MeteoDeserializer());
+                        mapperMeteo.registerModule(moduleMeteo);
 
-            // Désérialisation
-            Meteo meteo = mapperMeteo.readValue(response.body(), Meteo.class);
-            StationMeteo station = mapperStation.readValue(response.body(), StationMeteo.class);
+                        // Mapper pour StationMeteo
+                        ObjectMapper mapperStation = new ObjectMapper();
+                        SimpleModule moduleStation = new SimpleModule();
+                        moduleStation.addDeserializer(StationMeteo.class, new StationMeteoDeserializer());
+                        mapperStation.registerModule(moduleStation);
 
-            // Affichage
-            System.out.println("=== Objet Meteo ===");
-            System.out.println(meteo);
+                        // Désérialisation
+                        Meteo meteo = mapperMeteo.readValue(response.body(), Meteo.class);
+                        StationMeteo station = mapperStation.readValue(response.body(), StationMeteo.class);
 
-            System.out.println("\n=== Objet StationMeteo ===");
-            System.out.println(station);
-            System.out.println("Pays associé : " + station.getPays());
+                        // Affichage
+                        System.out.println("=== Objet Meteo ===");
+                        System.out.println(meteo);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                        System.out.println("\n=== Objet StationMeteo ===");
+                        System.out.println(station);
+                        System.out.println("Pays associé : " + station.getPays());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    connection.close();
+                }else{
+                    System.out.println("Connexion avec la base de donnée impossible");
+                }
+
+
+            } catch (SQLException e) {
+
+            }
+
+
+
+
     }
 }
