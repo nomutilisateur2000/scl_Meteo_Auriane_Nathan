@@ -1,11 +1,12 @@
 package ig.hearc.ig.scl.service;
 
+import ig.hearc.ig.scl.tools.EnvProperties;
 import java.io.IOException;
 import java.net.*;
 import java.net.http.*;
 
 public class ApiCallService {
-    final static String apiKey = "268a24058a99be0be4586bc24b78e298";
+    private final static String APIKEY = EnvProperties.get("APIKEY");
 
     public ApiCallService() {}
 
@@ -15,7 +16,7 @@ public class ApiCallService {
         HttpClient client = HttpClient.newHttpClient();
         // Construire une requête HTTP
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey))
+                .uri(URI.create("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + APIKEY))
                 .build();
         // Envoyer la requête et obtenir la réponse
         try {

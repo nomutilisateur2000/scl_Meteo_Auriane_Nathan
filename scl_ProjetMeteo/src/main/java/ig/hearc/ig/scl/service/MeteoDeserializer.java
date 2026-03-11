@@ -14,7 +14,7 @@ import java.util.Date;
 public class MeteoDeserializer extends JsonDeserializer<Meteo> {
     @Override
     public Meteo deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
-            throws IOException, JacksonException {
+            throws IOException, JacksonException, NullPointerException {
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         String description = node.get("weather").get(0).get("description").asText();
         Double temperature = node.get("main").get("temp").asDouble();
