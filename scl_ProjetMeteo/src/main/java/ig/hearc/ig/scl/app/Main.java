@@ -4,12 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import ig.hearc.ig.scl.business.Meteo;
 import ig.hearc.ig.scl.business.StationMeteo;
-import ig.hearc.ig.scl.persistence.DBConnection;
+
+import ig.hearc.ig.scl.exception.PaysExisteDeja;
 import ig.hearc.ig.scl.service.*;
 
 import java.net.http.HttpResponse;
-import java.sql.Connection;
-import java.sql.SQLException;
+
 import java.util.Scanner;
 
 public class Main {
@@ -61,17 +61,16 @@ public class Main {
             System.out.println("\n=== Objet StationMeteo ===");
             System.out.println(station);
             System.out.println("Pays associé : " + station.getPays());
-            if (openWeatherMapManager.insert(meteo, station.getPays(), station) != 0){
-                System.out.println("ça fonctionne");
-            }else{
-                System.out.println("ça fonctionne pas");
-            }
+            OwmPersistenceManagement service = new OwmPersistence();
+            service.insertAll(meteo, station.getPays(), station);
 
 
         } catch (NullPointerException e){
             System.out.println("La clé d'API n'est pas correcte");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (PaysExisteDeja paysExisteDeja){
+            System.out.println(paysExisteDeja.getMessage());
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e){
+            System.out.println(e.getMessage());
         }
 
     }

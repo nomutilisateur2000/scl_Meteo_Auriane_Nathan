@@ -5,5 +5,5 @@ import ig.hearc.ig.scl.business.Pays;
 import ig.hearc.ig.scl.business.StationMeteo;
 
 public interface OwmPersistenceManagement {
-    int insert(Meteo meteo, Pays pays, StationMeteo stationMeteo);
+    void insertAll(Meteo meteo, Pays pays, StationMeteo stationMeteo);
 }
