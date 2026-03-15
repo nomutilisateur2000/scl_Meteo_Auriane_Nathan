@@ -23,7 +23,6 @@ public class MeteoRepository {
     public void insert(Meteo meteo, StationMeteo station) throws SQLException {
 
         try {
-            CONNECTION.setAutoCommit(false);
             myStatement = CONNECTION.prepareStatement(QUERY);
             myStatement.setString(1,meteo.getDescription());
             myStatement.setDate(2, new Date(meteo.getDate().getTime()));

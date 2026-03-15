@@ -10,6 +10,7 @@ import ig.hearc.ig.scl.service.*;
 
 import java.net.http.HttpResponse;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -17,19 +18,39 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        double lat, lon;
-        OwmPersistenceManagement openWeatherMapManager = new OwmPersistence();
+        Double lat = Double.NaN;
+        Double lon = Double.NaN;
 
         // Saisie latitude
         do {
-            System.out.print("Entrer une latitude : ");
-            lat = sc.nextDouble();
+            try{
+                System.out.print("Entrer une latitude : ");
+                lat = sc.nextDouble();
+
+                if (lat < -90 || lat > 90){
+                    System.out.println("La latitude être comprise entre -90 et +90");
+                    lat = Double.NaN;
+                }
+            } catch(InputMismatchException wrongType){
+                System.out.println("La longitude être comprise entre -90 et +90");
+                sc.nextLine();
+            }
+
         } while (Double.isNaN(lat));
 
         // Saisie longitude
         do {
-            System.out.print("Entrer une longitude : ");
-            lon = sc.nextDouble();
+            try {
+                System.out.print("Entrer une longitude : ");
+                lon = sc.nextDouble();
+                if (lon < -180 || lon > 180) {
+                    System.out.println("La longitude être comprise entre -180 et +180");
+                    lon = Double.NaN;
+                }
+            }catch (InputMismatchException wrongType){
+                System.out.println("La longitude être comprise entre -180 et +180");
+                sc.nextLine();
+            }
         } while (Double.isNaN(lon));
 
         sc.close();
@@ -54,14 +75,8 @@ public class Main {
             Meteo meteo = mapperMeteo.readValue(response.body(), Meteo.class);
             StationMeteo station = mapperStation.readValue(response.body(), StationMeteo.class);
 
-            // Affichage
-            System.out.println("=== Objet Meteo ===");
-            System.out.println(meteo);
-
-            System.out.println("\n=== Objet StationMeteo ===");
-            System.out.println(station);
-            System.out.println("Pays associé : " + station.getPays());
-            OwmPersistenceManagement service = new OwmPersistence();
+            //Insertion des données meteo dans la BDD
+            IOWMManager service = new OWMManager();
             service.insertAll(meteo, station.getPays(), station);
 
 

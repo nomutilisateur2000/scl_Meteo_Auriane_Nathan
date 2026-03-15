@@ -9,53 +9,56 @@ import ig.hearc.ig.scl.persistence.DBConnection;
 import ig.hearc.ig.scl.repository.MeteoRepository;
 import ig.hearc.ig.scl.repository.PaysRepository;
 import ig.hearc.ig.scl.repository.StationRepository;
+import ig.hearc.ig.scl.tools.Log;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class OwmPersistence implements OwmPersistenceManagement{
+public class OWMManager implements IOWMManager {
     public void insertAll(Meteo meteo, Pays pays, StationMeteo stationMeteo){
 
         try {
             Connection connection = DBConnection.getConnection();
+            if (connection == null){
+                Log.warn("Problème lors de la connexion à la base de données");
+                return;
+            }
+
             connection.setAutoCommit(false);
             PaysRepository paysRepo = new PaysRepository(connection);
             MeteoRepository meteoRepo = new MeteoRepository(connection);
             StationRepository stationRepo = new StationRepository(connection);
 
+
             try{
                 try{
                     paysRepo.insert(pays);
                 } catch (PaysExisteDeja e){
-                    System.out.println(e.getMessage());
+                    Log.warn(e.getMessage());
                 }
 
                 try{
                     stationRepo.insert(stationMeteo, pays);
                 }catch (StationExisteDeja e){
-                    System.out.println(e.getMessage());
+                    Log.warn(e.getMessage());
                 }
                 try{
                     meteoRepo.insert(meteo, stationMeteo);
                 }catch (Exception e){
-                    System.out.println(e.getCause());
+                    Log.warn(e.getMessage());
                 }
 
                     connection.commit();
 
             }catch (SQLException e){
                 connection.rollback();
-                System.out.println(e.getCause());
+                Log.warn(e.getMessage());
             } finally {
                 connection.close();
             }
 
         }catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("connexion impossible");
-        }catch(NullPointerException e){
-            System.out.println("JSP");
-            e.printStackTrace();
+            Log.warn(e.getMessage());
         }
     }
 }

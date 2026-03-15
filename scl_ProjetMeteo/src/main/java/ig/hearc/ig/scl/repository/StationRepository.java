@@ -3,6 +3,7 @@ package ig.hearc.ig.scl.repository;
 import ig.hearc.ig.scl.business.Pays;
 import ig.hearc.ig.scl.business.StationMeteo;
 import ig.hearc.ig.scl.exception.PaysExisteDeja;
+import ig.hearc.ig.scl.exception.StationExisteDeja;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +19,6 @@ public class StationRepository {
 
     public void insert(StationMeteo station,Pays pays) throws SQLException {
         try {
-            CONNECTION.setAutoCommit(false);
             myStatement = CONNECTION.prepareStatement(QUERY);
             myStatement.setInt(1,station.getTimeZone());
             myStatement.setDouble(2,station.getLatitude());
@@ -32,7 +32,7 @@ public class StationRepository {
             }
         } catch (SQLException e){
             if(e.getErrorCode() == 20002){
-                throw new PaysExisteDeja("La station existe déjà et ne sera donc pas enregistré");
+                throw new StationExisteDeja("La station existe déjà et ne sera donc pas enregistré");
             }
             throw e;
         }

@@ -17,7 +17,6 @@ public class PaysRepository {
 
     public void insert(Pays pays) throws SQLException {
         try {
-            CONNECTION.setAutoCommit(false);
             myStatement = CONNECTION.prepareStatement(QUERY);
             myStatement.setString(1,pays.getName());
             myStatement.setString(2,pays.getCode());
