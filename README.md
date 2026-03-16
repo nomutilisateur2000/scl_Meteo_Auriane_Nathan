@@ -32,6 +32,11 @@ src
     │       │   ├── Pays.java
     │       │   └── StationMeteo.java
     │       │
+    |       ├── deserializer
+    │       │   └── MeteoDeserializer
+    │       │   └── PaysDeserializer
+    │       │   └── StationMeteoDeserializer
+    │       │
     │       ├── exception
     │       │   ├── PaysExisteDeja.java
     │       │   └── StationExisteDeja.java
