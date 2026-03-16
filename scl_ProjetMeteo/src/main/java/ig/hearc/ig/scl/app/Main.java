@@ -32,7 +32,7 @@ public class Main {
                     lat = Double.NaN;
                 }
             } catch(InputMismatchException wrongType){
-                System.out.println("La longitude être comprise entre -90 et +90");
+                System.out.println("La latitude être comprise entre -90 et +90");
                 sc.nextLine();
             }
 
@@ -79,9 +79,10 @@ public class Main {
             IOWMManager service = new OWMManager();
             service.insertAll(meteo, station.getPays(), station);
 
+            System.out.println("L'enregistrement a été effectué avec succès!");
 
         } catch (NullPointerException e){
-            System.out.println("La clé d'API n'est pas correcte");
+            System.out.println("La clé d'API ou le lien n'est pas correcte");
         } catch (PaysExisteDeja paysExisteDeja){
             System.out.println(paysExisteDeja.getMessage());
         } catch (com.fasterxml.jackson.core.JsonProcessingException e){

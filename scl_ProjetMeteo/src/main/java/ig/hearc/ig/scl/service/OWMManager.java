@@ -34,13 +34,13 @@ public class OWMManager implements IOWMManager {
                 try{
                     paysRepo.insert(pays);
                 } catch (PaysExisteDeja e){
-                    Log.warn(e.getMessage());
+
                 }
 
                 try{
                     stationRepo.insert(stationMeteo, pays);
                 }catch (StationExisteDeja e){
-                    Log.warn(e.getMessage());
+
                 }
                 try{
                     meteoRepo.insert(meteo, stationMeteo);
