@@ -1,6 +1,10 @@
 # scl_Meteo_Auriane_Nathan
 # Projet SCL – Application Météo
 
+## Paramètres du SDK
+java version 25
+
+
 ## Description
 
 Cette application Java permet de :
