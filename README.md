@@ -51,12 +51,9 @@ src
     │       │
     │       ├── service
     │       │   ├── ApiCallService.java
+    │       │   ├── ApiCallPaysService.java
     │       │   ├── IOWMManager.java
-    │       │   ├── MeteoDeserializer.java
     │       │   ├── OWMManager.java
-    │       │   ├── PaysDeserializer.java
-    │       │   ├── PaysService.java
-    │       │   └── StationMeteoDeserializer.java
     │       │
     │       └── tools
     │           ├── EnvProperties.java
