@@ -21,38 +21,44 @@ La structure de données correspondant au projet se trouve dans le fichier **Pro
 
 ```
 src
-├── app
-│   └── Main.java
-│
-├── business
-│   ├── Meteo.java
-│   ├── Pays.java
-│   └── StationMeteo.java
-│
-├── exception
-│   ├── PaysExisteDeja.java
-│   └── StationExisteDeja.java
-│
-├── persistence
-│   └── DBConnection.java
-│
-├── repository
-│   ├── MeteoRepository.java
-│   ├── PaysRepository.java
-│   └── StationRepository.java
-│
-├── service
-│   ├── ApiCallService.java
-│   ├── IOWMManager.java
-│   ├── MeteoDeserializer.java
-│   ├── OWMManager.java
-│   ├── PaysDeserializer.java
-│   ├── PaysService.java
-│   └── StationMeteoDeserializer.java
-│
-└── tools
-    ├── EnvProperties.java
-    └── Log.java
+├── main
+    ├── java
+    │   └── ig.hearc.ig.scl
+    │       ├── app
+    │       │   └── Main.java
+    │       │
+    │       ├── business
+    │       │   ├── Meteo.java
+    │       │   ├── Pays.java
+    │       │   └── StationMeteo.java
+    │       │
+    │       ├── exception
+    │       │   ├── PaysExisteDeja.java
+    │       │   └── StationExisteDeja.java
+    │       │
+    │       ├── persistence
+    │       │   └── DBConnection.java
+    │       │
+    │       ├── repository
+    │       │   ├── MeteoRepository.java
+    │       │   ├── PaysRepository.java
+    │       │   └── StationRepository.java
+    │       │
+    │       ├── service
+    │       │   ├── ApiCallService.java
+    │       │   ├── IOWMManager.java
+    │       │   ├── MeteoDeserializer.java
+    │       │   ├── OWMManager.java
+    │       │   ├── PaysDeserializer.java
+    │       │   ├── PaysService.java
+    │       │   └── StationMeteoDeserializer.java
+    │       │
+    │       └── tools
+    │           ├── EnvProperties.java
+    │           └── Log.java
+    │
+    └── resources
+        └── env
 ```
 
 ---
