@@ -9,7 +9,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class PaysService {
+public class ApiCallPaysService {
 
     public static void callApiName(Pays pays) {
         if (pays.getCode() == null) return;

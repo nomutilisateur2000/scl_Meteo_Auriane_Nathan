@@ -1,5 +1,6 @@
-package ch.hearc.ig.scl.service;
+package ch.hearc.ig.scl.deserializer;
 
+import ch.hearc.ig.scl.service.ApiCallPaysService;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -31,7 +32,7 @@ public class StationMeteoDeserializer extends JsonDeserializer<StationMeteo> {
         String code = root.path("sys").path("country").asText(null);
         if (code != null) {
             pays.setCode(code);
-            PaysService.callApiName(pays);
+            ApiCallPaysService.callApiName(pays);
         } else {
             pays.setCode("N/A");
             pays.setName("Inconnu");

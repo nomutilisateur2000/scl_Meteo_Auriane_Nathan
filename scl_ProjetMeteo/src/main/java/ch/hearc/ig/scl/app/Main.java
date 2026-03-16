@@ -1,5 +1,7 @@
 package ch.hearc.ig.scl.app;
 
+import ch.hearc.ig.scl.deserializer.MeteoDeserializer;
+import ch.hearc.ig.scl.deserializer.StationMeteoDeserializer;
 import ch.hearc.ig.scl.service.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -7,7 +9,6 @@ import ch.hearc.ig.scl.business.Meteo;
 import ch.hearc.ig.scl.business.StationMeteo;
 
 import ch.hearc.ig.scl.exception.PaysExisteDeja;
-import ch.hearc.ig.scl.service.*;
 
 import java.net.http.HttpResponse;
 

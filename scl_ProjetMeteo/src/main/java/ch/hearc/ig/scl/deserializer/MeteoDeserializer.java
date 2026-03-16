@@ -1,4 +1,4 @@
-package ch.hearc.ig.scl.service;
+package ch.hearc.ig.scl.deserializer;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;

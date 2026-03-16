@@ -1,5 +1,6 @@
-package ch.hearc.ig.scl.service;
+package ch.hearc.ig.scl.deserializer;
 
+import ch.hearc.ig.scl.service.ApiCallPaysService;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -23,8 +24,8 @@ public class PaysDeserializer extends JsonDeserializer<Pays> {
         if (code != null) {
             pays.setCode(code);
 
-            // Remplir le nom via ton service simplifié
-            PaysService.callApiName(pays);
+            // Remplir le nom
+            ApiCallPaysService.callApiName(pays);
         } else {
             // Valeur par défaut si pas de code
             pays.setCode("N/A");
