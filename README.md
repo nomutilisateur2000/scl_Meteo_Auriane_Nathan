@@ -23,7 +23,7 @@ La structure de données correspondant au projet se trouve dans le fichier **Pro
 src
 ├── main
     ├── java
-    │   └── ig.hearc.ig.scl
+    │   └── ch.hearc.ig.scl
     │       ├── app
     │       │   └── Main.java
     │       │
