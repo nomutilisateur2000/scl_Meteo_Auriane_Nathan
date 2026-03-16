@@ -13,6 +13,8 @@ Cette application Java permet de :
 
 Le projet utilise **Maven** pour la gestion des dépendances.
 
+La structure de données correspondant au projet se trouve dans le fichier **Projet1_Auriane_Nathan.sql**.
+
 ---
 
 # Structure du projet
