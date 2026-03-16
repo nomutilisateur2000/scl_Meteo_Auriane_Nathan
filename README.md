@@ -97,19 +97,6 @@ APIKEY=
 | --------- | ---------------------- |
 | APIKEY    | Clé API OpenWeatherMap |
 
-Vous pouvez obtenir une clé API sur :
-https://openweathermap.org/api
-
----
-
-# Compilation du projet
-
-Avec Maven :
-
-```
-mvn clean install
-```
-
 ---
 
 # Exécution
