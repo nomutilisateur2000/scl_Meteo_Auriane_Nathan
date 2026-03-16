@@ -9,21 +9,9 @@ Cette application Java permet de :
 2. Appeler une **API météo** afin de récupérer les informations météorologiques.
 3. Désérialiser les données JSON à l’aide de **Jackson**.
 4. Récupérer les informations sur le **pays** via un service web.
-5. Insérer les données météo, la station météo et le pays dans une **base de données**.
+5. Insérer les données météo, la station météo et le pays dans une **base de données Oracle**.
 
 Le projet utilise **Maven** pour la gestion des dépendances.
-
----
-
-# Technologies utilisées
-
-* Java
-* Maven
-* Jackson (désérialisation JSON)
-* API météo (OpenWeatherMap)
-* API pays HE-ARC
-* Base de données Oracle
-* Git / GitHub
 
 ---
 
@@ -120,13 +108,6 @@ Exemple :
 Entrer une latitude : 46.99
 Entrer une longitude : 6.93
 ```
-
-L'application :
-
-1. Appelle l’API météo
-2. Désérialise les données JSON
-3. Récupère le pays correspondant
-4. Insère les données dans la base de données
 
 ---
 
