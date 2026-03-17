@@ -41,9 +41,6 @@ src
     │       │   └── PaysDeserializer
     │       │   └── StationMeteoDeserializer
     │       │
-    │       ├── exception
-    │       │   ├── PaysExisteDeja.java
-    │       │   └── StationExisteDeja.java
     │       │
     │       ├── persistence
     │       │   └── DBConnection.java
