@@ -6,6 +6,7 @@ import java.util.Map;
 public class StationMeteo {
     static Integer num = 0;
     private Integer numero;
+    private String idStation;
     private Integer timeZone;
     private Pays pays;
     private Double latitude;
@@ -18,13 +19,22 @@ public class StationMeteo {
     }
 
 
-    public StationMeteo(Integer timeZone, Pays pays, Double latitude, Double longitude, String nom) {
+    public StationMeteo(String id, Integer timeZone, Pays pays, Double latitude, Double longitude, String nom) {
         this.numero = num++;
+        this.idStation = id;
         this.timeZone = timeZone;
         this.pays = pays;
         this.latitude = latitude;
         this.longitude = longitude;
         this.nom = nom;
+    }
+
+    public String getIdStation() {
+        return idStation;
+    }
+
+    public void setIdStation(String idStation) {
+        this.idStation = idStation;
     }
 
     public Integer getNumero() {
