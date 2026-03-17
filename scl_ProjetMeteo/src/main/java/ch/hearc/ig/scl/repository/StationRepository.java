@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class StationRepository {
-    private static final String QUERY = "INSERT INTO STATION (TIME_ZONE,LATITUDE,LONGITUDE,NOM,NUM_PAYS) VALUES (?,?,?,?,(SELECT NUMERO FROM PAYS WHERE ? = CODE))";
+    private static final String QUERY = "INSERT INTO STATION (ID_STATION, TIME_ZONE,LATITUDE,LONGITUDE,NOM,NUM_PAYS) VALUES (?,?,?,?,?,(SELECT NUMERO FROM PAYS WHERE ? = CODE))";
     private final Connection CONNECTION;
     PreparedStatement myStatement;
     public StationRepository(Connection connection) {
@@ -19,15 +19,16 @@ public class StationRepository {
     public void insert(StationMeteo station,Pays pays) throws SQLException {
         try {
             myStatement = CONNECTION.prepareStatement(QUERY);
-            myStatement.setInt(1,station.getTimeZone());
-            myStatement.setDouble(2,station.getLatitude());
-            myStatement.setDouble(3,station.getLongitude());
-            myStatement.setString(4,station.getNom());
-            myStatement.setString(5,pays.getCode());
+            myStatement.setString(1,station.getIdStation());
+            myStatement.setInt(2,station.getTimeZone());
+            myStatement.setDouble(3,station.getLatitude());
+            myStatement.setDouble(4,station.getLongitude());
+            myStatement.setString(5,station.getNom());
+            myStatement.setString(6,pays.getCode());
 
             int rowsAffected = myStatement.executeUpdate();
             if (rowsAffected == 0){
-                throw new SQLException("insertion de la station immpossible");
+                throw new SQLException("insertion de la station impossible");
             }
         } catch (SQLException e){
             if(e.getErrorCode() == 20002){
