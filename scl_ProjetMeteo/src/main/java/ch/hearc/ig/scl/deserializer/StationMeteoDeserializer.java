@@ -36,8 +36,7 @@ public class StationMeteoDeserializer extends JsonDeserializer<StationMeteo> {
             pays.setCode(code);
             ApiCallPaysService.callApiName(pays);
         } else {
-            pays.setCode("N/A");
-            pays.setName("Inconnu");
+            return new StationMeteo(idStation, timeZone, null, latitude, longitude, nomStation);
         }
 
         // Retourner la station complète

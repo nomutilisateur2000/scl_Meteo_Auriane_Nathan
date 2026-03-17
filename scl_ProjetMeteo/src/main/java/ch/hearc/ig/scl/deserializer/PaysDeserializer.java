@@ -28,8 +28,8 @@ public class PaysDeserializer extends JsonDeserializer<Pays> {
             ApiCallPaysService.callApiName(pays);
         } else {
             // Valeur par défaut si pas de code
-            pays.setCode("N/A");
-            pays.setName("Inconnu");
+            pays.setCode(null);
+            pays.setName(null);
         }
 
         return pays;
