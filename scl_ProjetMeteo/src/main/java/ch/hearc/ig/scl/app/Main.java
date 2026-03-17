@@ -89,6 +89,8 @@ public class Main {
             System.out.println("La clé d'API ou le lien n'est pas correcte");
         } catch (com.fasterxml.jackson.core.JsonProcessingException e){
             System.out.println(e.getMessage());
+        } catch (RuntimeException e){
+            System.out.println("oopsi, vous n'êtes sois pas connecté à l'internet ou pas au VPN de l'école");
         }
 
     }
