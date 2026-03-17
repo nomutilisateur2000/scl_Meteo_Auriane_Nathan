@@ -3,8 +3,7 @@ package ch.hearc.ig.scl.service;
 import ch.hearc.ig.scl.business.Meteo;
 import ch.hearc.ig.scl.business.Pays;
 import ch.hearc.ig.scl.business.StationMeteo;
-import ch.hearc.ig.scl.exception.PaysExisteDeja;
-import ch.hearc.ig.scl.exception.StationExisteDeja;
+
 import ch.hearc.ig.scl.persistence.DBConnection;
 import ch.hearc.ig.scl.repository.MeteoRepository;
 import ch.hearc.ig.scl.repository.PaysRepository;
@@ -33,18 +32,19 @@ public class OWMManager implements IOWMManager {
             try{
                 try{
                     paysRepo.insert(pays);
-                } catch (PaysExisteDeja e){
+                } catch (SQLException e){
 
                 }
 
                 try{
                     stationRepo.insert(stationMeteo, pays);
-                }catch (StationExisteDeja e){
+                }catch (SQLException e){
 
                 }
                 try{
                     meteoRepo.insert(meteo, stationMeteo);
-                }catch (Exception e){
+                    System.out.println("L'enregistrement a été effectué avec succès!");
+                }catch (SQLException e){
                     Log.warn(e.getMessage());
                 }
 

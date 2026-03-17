@@ -2,7 +2,6 @@ package ch.hearc.ig.scl.repository;
 
 import ch.hearc.ig.scl.business.Pays;
 import ch.hearc.ig.scl.business.StationMeteo;
-import ch.hearc.ig.scl.exception.StationExisteDeja;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,9 +30,7 @@ public class StationRepository {
                 throw new SQLException("insertion de la station impossible");
             }
         } catch (SQLException e){
-            if(e.getErrorCode() == 20002){
-                throw new StationExisteDeja("La station existe déjà et ne sera donc pas enregistré");
-            }
+
             throw e;
         }
     }

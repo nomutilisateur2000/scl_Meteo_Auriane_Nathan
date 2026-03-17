@@ -1,7 +1,7 @@
 package ch.hearc.ig.scl.repository;
 
 import ch.hearc.ig.scl.business.Pays;
-import ch.hearc.ig.scl.exception.PaysExisteDeja;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,9 +26,6 @@ public class PaysRepository {
                 throw new SQLException("insertion du pays immpossible");
             }
         } catch (SQLException e){
-            if(e.getErrorCode() == 20001){
-                throw new PaysExisteDeja("Le pays existe déjà et ne sera donc pas enregistré");
-            }
             throw e;
         }
     }
