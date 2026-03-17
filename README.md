@@ -116,8 +116,8 @@ Entrer une longitude :
 Exemple :
 
 ```
-Entrer une latitude : 46.99
-Entrer une longitude : 6.93
+Entrer une latitude : 46,99
+Entrer une longitude : 6,93
 ```
 
 ---
