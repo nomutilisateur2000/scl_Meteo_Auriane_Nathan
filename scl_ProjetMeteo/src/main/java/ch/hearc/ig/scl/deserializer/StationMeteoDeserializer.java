@@ -27,6 +27,8 @@ public class StationMeteoDeserializer extends JsonDeserializer<StationMeteo> {
         // Nom de la station
         String nomStation = root.path("name").asText("Inconnu");
 
+        String idStation = root.path("id").asText("Inconnu");
+
         // --- Création du Pays avec code et récupération du nom via ton service ---
         Pays pays = new Pays();
         String code = root.path("sys").path("country").asText(null);
@@ -39,6 +41,6 @@ public class StationMeteoDeserializer extends JsonDeserializer<StationMeteo> {
         }
 
         // Retourner la station complète
-        return new StationMeteo(timeZone, pays, latitude, longitude, nomStation);
+        return new StationMeteo(idStation, timeZone, pays, latitude, longitude, nomStation);
     }
 }

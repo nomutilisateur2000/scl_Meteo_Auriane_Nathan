@@ -1,6 +1,10 @@
 # scl_Meteo_Auriane_Nathan
 # Projet SCL – Application Météo
 
+## Paramètres du SDK
+java version 25
+
+
 ## Description
 
 Cette application Java permet de :
@@ -23,7 +27,7 @@ La structure de données correspondant au projet se trouve dans le fichier **Pro
 src
 ├── main
     ├── java
-    │   └── ig.hearc.ig.scl
+    │   └── ch.hearc.ig.scl
     │       ├── app
     │       │   └── Main.java
     │       │
@@ -31,6 +35,11 @@ src
     │       │   ├── Meteo.java
     │       │   ├── Pays.java
     │       │   └── StationMeteo.java
+    │       │
+    |       ├── deserializer
+    │       │   └── MeteoDeserializer
+    │       │   └── PaysDeserializer
+    │       │   └── StationMeteoDeserializer
     │       │
     │       ├── exception
     │       │   ├── PaysExisteDeja.java
@@ -46,12 +55,9 @@ src
     │       │
     │       ├── service
     │       │   ├── ApiCallService.java
+    │       │   ├── ApiCallPaysService.java
     │       │   ├── IOWMManager.java
-    │       │   ├── MeteoDeserializer.java
     │       │   ├── OWMManager.java
-    │       │   ├── PaysDeserializer.java
-    │       │   ├── PaysService.java
-    │       │   └── StationMeteoDeserializer.java
     │       │
     │       └── tools
     │           ├── EnvProperties.java

@@ -16,7 +16,7 @@ public class ApiCallService {
         HttpClient client = HttpClient.newHttpClient();
         // Construire une requête HTTP
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + APIKEY))
+                .uri(URI.create("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + APIKEY))
                 .build();
         // Envoyer la requête et obtenir la réponse
         try {
