@@ -8,8 +8,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import ch.hearc.ig.scl.business.Meteo;
 import ch.hearc.ig.scl.business.StationMeteo;
 
-import ch.hearc.ig.scl.exception.PaysExisteDeja;
-
 import java.net.http.HttpResponse;
 
 import java.util.InputMismatchException;
@@ -81,12 +79,10 @@ public class Main {
             IOWMManager service = new OWMManager();
             service.insertAll(meteo, station.getPays(), station);
 
-            System.out.println("L'enregistrement a été effectué avec succès!");
+
 
         } catch (NullPointerException e){
             System.out.println("La clé d'API ou le lien n'est pas correcte");
-        } catch (PaysExisteDeja paysExisteDeja){
-            System.out.println(paysExisteDeja.getMessage());
         } catch (com.fasterxml.jackson.core.JsonProcessingException e){
             System.out.println(e.getMessage());
         }
