@@ -14,13 +14,17 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class OWMManager implements IOWMManager {
-    public void insertAll(Meteo meteo, Pays pays, StationMeteo stationMeteo){
+    public boolean insertAll(Meteo meteo, Pays pays, StationMeteo stationMeteo){
+
+        if(stationMeteo.getPays() == null || stationMeteo.getIdStation().equals(0)){
+            return false;
+        }
 
         try {
             Connection connection = DBConnection.getConnection();
             if (connection == null){
                 Log.warn("Problème lors de la connexion à la base de données");
-                return;
+                return false;
             }
 
             connection.setAutoCommit(false);
@@ -43,7 +47,6 @@ public class OWMManager implements IOWMManager {
                 }
                 try{
                     meteoRepo.insert(meteo, stationMeteo);
-                    System.out.println("L'enregistrement a été effectué avec succès!");
                 }catch (SQLException e){
                     Log.warn(e.getMessage());
                 }
@@ -60,5 +63,6 @@ public class OWMManager implements IOWMManager {
         }catch (SQLException e){
             Log.warn(e.getMessage());
         }
+        return true;
     }
 }

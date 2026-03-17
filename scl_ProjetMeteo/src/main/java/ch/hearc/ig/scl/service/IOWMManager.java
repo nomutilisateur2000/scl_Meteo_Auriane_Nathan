@@ -5,5 +5,5 @@ import ch.hearc.ig.scl.business.Pays;
 import ch.hearc.ig.scl.business.StationMeteo;
 
 public interface IOWMManager {
-    void insertAll(Meteo meteo, Pays pays, StationMeteo stationMeteo);
+    boolean insertAll(Meteo meteo, Pays pays, StationMeteo stationMeteo);
 }

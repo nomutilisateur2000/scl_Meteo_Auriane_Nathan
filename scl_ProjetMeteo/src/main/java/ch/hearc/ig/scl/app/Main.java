@@ -77,7 +77,11 @@ public class Main {
 
             //Insertion des données meteo dans la BDD
             IOWMManager service = new OWMManager();
-            service.insertAll(meteo, station.getPays(), station);
+            if (service.insertAll(meteo, station.getPays(), station)){
+                System.out.println("L'enregistrement a été effectué avec succès!");
+            }else {
+                System.out.println("L'inserstion n'a pas pu être effectuée");
+            }
 
 
 
